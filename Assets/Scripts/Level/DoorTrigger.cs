@@ -7,24 +7,32 @@ public class DoorTrigger : MonoBehaviour
 {
 
     public UnityEvent doorTriggered;
+    private bool canOpenDoor;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    private void Start() {
+        canOpenDoor = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.E) && canOpenDoor) {
             //set door to open
             doorTriggered.Invoke();
         }
     }
+    private void OnTriggerEnter(Collider other) {
+        canOpenDoor = true;
+    }
+
+    private void OnTriggerExit(Collider other) {
+        canOpenDoor = false;
+    }
+
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (Input.GetKeyDown(KeyCode.E))
+    //    {
+    //        //set door to open
+    //        doorTriggered.Invoke();
+    //    }
+    //}
 }
