@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1225131982085253644}
   - component: {fileID: 7150708230920226846}
   - component: {fileID: -5735145581127398247}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DoorWall3x1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,7 +198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8243206163084407129}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OpenDoor Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6782180077451473720}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Close Door Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,6 +332,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Door1x1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ad06ddc6a9ff14a34802faddea06de93,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ad06ddc6a9ff14a34802faddea06de93,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad06ddc6a9ff14a34802faddea06de93, type: 3}
