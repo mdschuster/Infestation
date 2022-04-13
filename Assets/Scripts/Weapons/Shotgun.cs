@@ -27,7 +27,7 @@ public class Shotgun : MonoBehaviour
     {
         
         time-=Time.deltaTime;
-        if(time<=0 && Input.GetMouseButtonDown(0)) {
+        if(time<=0 && Input.GetButton("Fire1")) {
             time = timeBetweenShots;
             animator.SetTrigger("Shoot");
             shootEffect.Play();
@@ -37,6 +37,11 @@ public class Shotgun : MonoBehaviour
                 if (rayHit.collider.tag == "Wall") {
                     Quaternion rotation = Quaternion.LookRotation(rayHit.normal, Vector3.up);
                     Instantiate(wallHitEffect, rayHit.point, rotation);
+                }
+                if (rayHit.collider.tag == "Enemy")
+                {
+                    rayHit.collider.gameObject.GetComponent<Enemy>().registerHit(rayHit.point);
+                    //do enemy hit stuff
                 }
             }
 
