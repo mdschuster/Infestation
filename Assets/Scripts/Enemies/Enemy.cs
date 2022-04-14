@@ -24,11 +24,14 @@ public class Enemy : MonoBehaviour
     [Header("Target")]
     public GameObject target;
 
+    private Animator animator;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         time = Random.Range(minTimeBetweenAttack, maxTimeBetweenAttack);
         target = GameManager.Instance().player;
     }
@@ -59,7 +62,11 @@ public class Enemy : MonoBehaviour
         rotVec.y = 0;
         rb.rotation = Quaternion.LookRotation(rotVec);
 
-        if (moveAmount.magnitude <= radius) return;
+        if (moveAmount.magnitude <= radius) {
+            animator.SetBool("isMoving", false);
+            return;
+        }
+        animator.SetBool("isMoving", true);
         rb.MovePosition(rb.position + moveAmount.normalized*maxSpeed * Time.deltaTime);
 
     }
