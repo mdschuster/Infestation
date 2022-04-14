@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Enemy Information")]
+    public float maxSpeed;
+    public float radius;
+    private Vector3 moveAmount;
+    private Rigidbody rb;    
 
     [Header("Death Information")]
     public GameObject bloodSplatter;
@@ -23,6 +28,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         time = Random.Range(minTimeBetweenAttack, maxTimeBetweenAttack);
         target = GameManager.Instance().player;
     }
@@ -40,6 +46,20 @@ public class Enemy : MonoBehaviour
             time = Random.Range(minTimeBetweenAttack, maxTimeBetweenAttack);
 
         }
+
+        moveAmount = target.transform.position - this.transform.position;
+        moveAmount.y = 0f;
+
+    }
+
+    private void FixedUpdate()
+    {
+
+        if (moveAmount.magnitude <= radius) return;
+        rb.MovePosition(rb.position + moveAmount.normalized*maxSpeed * Time.deltaTime);
+        Vector3 rotVec = target.transform.position - this.transform.position;
+        rotVec.y = 0;
+        rb.rotation = Quaternion.LookRotation(rotVec);
     }
 
     public void registerHit(Vector3 hitPoint)

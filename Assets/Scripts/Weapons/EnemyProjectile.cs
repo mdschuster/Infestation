@@ -30,12 +30,13 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (collider.gameObject.tag == "Wall")
         {
-            
+            Destroy(this.gameObject);
         }
         if (collider.gameObject.tag == "Player")
         {
             print("Hit player");
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
+
     }
 }
