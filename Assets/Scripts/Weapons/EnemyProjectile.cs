@@ -19,11 +19,15 @@ public class EnemyProjectile : MonoBehaviour
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveAmount * Time.deltaTime);
+        rb.rotation = Quaternion.LookRotation(target.transform.position);
     }
 
     public void setMovement(Vector3 movement)
     {
         moveAmount = movement*maxSpeed;   
+    }
+    public void setTarget(GameObject target) {
+        this.target = target;
     }
 
     private void OnTriggerEnter(Collider collider)

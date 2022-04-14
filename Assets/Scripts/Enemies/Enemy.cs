@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour
             vec.Normalize();
             GameObject go = Instantiate(projectile, fireOrigin.transform.position, Quaternion.identity);
             go.GetComponent<EnemyProjectile>().setMovement(vec);
+            go.GetComponent<EnemyProjectile>().setTarget(target);
             time = Random.Range(minTimeBetweenAttack, maxTimeBetweenAttack);
 
         }
