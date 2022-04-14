@@ -19,7 +19,10 @@ public class EnemyProjectile : MonoBehaviour
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveAmount * Time.deltaTime);
-        rb.rotation = Quaternion.LookRotation(target.transform.position);
+        Vector3 rotVec = target.transform.position - this.transform.position;
+        rotVec.y = 0;
+        rb.rotation = Quaternion.LookRotation(rotVec);
+
     }
 
     public void setMovement(Vector3 movement)

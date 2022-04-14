@@ -55,12 +55,13 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        if (moveAmount.magnitude <= radius) return;
-        rb.MovePosition(rb.position + moveAmount.normalized*maxSpeed * Time.deltaTime);
         Vector3 rotVec = target.transform.position - this.transform.position;
         rotVec.y = 0;
         rb.rotation = Quaternion.LookRotation(rotVec);
+
+        if (moveAmount.magnitude <= radius) return;
+        rb.MovePosition(rb.position + moveAmount.normalized*maxSpeed * Time.deltaTime);
+
     }
 
     public void registerHit(Vector3 hitPoint)
