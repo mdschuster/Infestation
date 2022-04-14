@@ -26,7 +26,13 @@ public class SimpleMovement : MonoBehaviour
         moveAmount.x = Input.GetAxisRaw("Horizontal");
         moveAmount.z = Input.GetAxisRaw("Vertical");
         moveAmount.y = 0f;
-        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0f);
+        float input = 0f;
+        if(Mathf.Abs(Input.GetAxis("Joy X")) > Mathf.Abs(Input.GetAxis("Mouse X"))) {
+            input = Input.GetAxis("Joy X");
+        } else {
+            input = Input.GetAxis("Mouse X");
+        }
+        transform.rotation *= Quaternion.Euler(0, input * lookSpeed, 0f);
     }
 
     private void FixedUpdate()

@@ -14,7 +14,7 @@ public class DoorTrigger : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.E) && canOpenDoor) {
+        if (Input.GetButton("Submit") && canOpenDoor) {
             //set door to open
             doorTriggered.Invoke();
         }

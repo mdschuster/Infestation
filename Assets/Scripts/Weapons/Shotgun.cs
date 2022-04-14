@@ -23,11 +23,10 @@ public class Shotgun : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-        time-=Time.deltaTime;
-        if(time<=0 && Input.GetButton("Fire1")) {
+    void Update() {
+
+        time -= Time.deltaTime;
+        if (time <= 0 && (Input.GetButton("Fire1") || Input.GetAxisRaw("Fire1")>=0.5f)) {
             time = timeBetweenShots;
             animator.SetTrigger("Shoot");
             shootEffect.Play();
