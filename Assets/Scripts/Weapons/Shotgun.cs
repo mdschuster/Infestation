@@ -25,7 +25,6 @@ public class Shotgun : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-
         time -= Time.deltaTime;
         float fireAxis = 0f;
         float fireValue = 0f;
@@ -40,6 +39,7 @@ public class Shotgun : MonoBehaviour
         ifFireAxis=fireAxis>=fireValue;
 #endif
         if (time <= 0 && (Input.GetButton("Fire1") || ifFireAxis)) {
+            if (GameManager.Instance().isControlLocked()) return;
             time = timeBetweenShots;
             animator.SetTrigger("Shoot");
             shootEffect.Play();
