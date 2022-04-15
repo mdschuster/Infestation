@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(controlLocked && gameOver && Input.GetButton("Submit"))
+        if(controlLocked && gameOver && (Input.GetButton("Submit")||Input.GetButton("Fire1")))
         {
             onRestartClick();
         }
