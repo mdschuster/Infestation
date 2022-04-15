@@ -6,6 +6,7 @@ public class Door : MonoBehaviour
 {
     public GameObject openDoorPosition;
     public GameObject closeDoorPosition;
+    public GameObject doorOpenSound;
     public float timeOpen;
     public float doorSpeed;
     public float tol;
@@ -21,8 +22,11 @@ public class Door : MonoBehaviour
 
     public void onDoorTriggered()
     {
-        if(!isDoorMoving)
+        if (!isDoorMoving)
+        {
             StartCoroutine(openDoor());
+            Instantiate(doorOpenSound, this.transform.position, Quaternion.identity);
+        }
     }
 
     private IEnumerator openDoor()

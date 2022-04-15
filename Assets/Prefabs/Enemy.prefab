@@ -99,7 +99,8 @@ MonoBehaviour:
   radius: 7
   bloodSplatter: {fileID: 6962187370524992427, guid: 2309dd1c4c9ec493789fc96a5e7d740d,
     type: 3}
-  deathSounds: []
+  deathSound: {fileID: 4507009017943130146, guid: e0f074efaab404f9fb6755241e5ea35f,
+    type: 3}
   projectile: {fileID: 2368378195297484274, guid: eb1c4bcd0390743a480293504800b3db,
     type: 3}
   fireOrigin: {fileID: 2768272787362388168}

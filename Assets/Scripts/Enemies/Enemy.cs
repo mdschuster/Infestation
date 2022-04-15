@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Death Information")]
     public GameObject bloodSplatter;
-    public AudioClip[] deathSounds;
+    public GameObject deathSound;
 
     [Header("Projectile")]
     public GameObject projectile;
@@ -79,6 +79,7 @@ public class Enemy : MonoBehaviour
         //play die animation
 
         //stay in death pose
+        Instantiate(deathSound, hitPoint, Quaternion.identity);
 
         Destroy(this.gameObject);
     }

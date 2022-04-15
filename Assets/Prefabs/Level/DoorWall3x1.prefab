@@ -384,6 +384,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openDoorPosition: {fileID: 4012250870430044063}
   closeDoorPosition: {fileID: 4252903891069245584}
+  doorOpenSound: {fileID: 4935648570143922299, guid: 0692a3077e7b64e7fb95132d7e9200e4,
+    type: 3}
   timeOpen: 2
   doorSpeed: 10
   tol: 0.01

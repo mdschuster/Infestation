@@ -27,11 +27,21 @@ public class SimpleMovement : MonoBehaviour
         moveAmount.z = Input.GetAxisRaw("Vertical");
         moveAmount.y = 0f;
         float input = 0f;
-        if(Mathf.Abs(Input.GetAxis("Joy X")) > Mathf.Abs(Input.GetAxis("Mouse X"))) {
+#if UNITY_EDITOR_OSX
+        if (Mathf.Abs(Input.GetAxis("Joy X Mac")) > Mathf.Abs(Input.GetAxis("Mouse X"))) {
+            input = Input.GetAxis("Joy X Mac");
+        } else {
+            input = Input.GetAxis("Mouse X");
+        }
+#else
+        if (Mathf.Abs(Input.GetAxis("Joy X")) > Mathf.Abs(Input.GetAxis("Mouse X"))) {
             input = Input.GetAxis("Joy X");
         } else {
             input = Input.GetAxis("Mouse X");
         }
+
+#endif
+
         transform.rotation *= Quaternion.Euler(0, input * lookSpeed, 0f);
     }
 
