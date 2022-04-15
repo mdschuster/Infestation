@@ -23,7 +23,11 @@ public class SimpleMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance().isControlLocked()) return;
+        if (GameManager.Instance().isControlLocked())
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
         moveAmount.x = Input.GetAxisRaw("Horizontal");
         moveAmount.z = Input.GetAxisRaw("Vertical");
         moveAmount.y = 0f;

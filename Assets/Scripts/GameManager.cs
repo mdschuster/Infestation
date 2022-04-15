@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,7 +36,9 @@ public class GameManager : MonoBehaviour
     public Image instructions;
     public Image insImage;
     public Canvas UICanvas;
+    public CanvasGroup deathCanvas;
     private bool controlLocked;
+    private bool gameOver;
 
 
 
@@ -43,10 +46,22 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        deathCanvas.alpha = 0f;
+        deathCanvas.gameObject.SetActive(false);
         controlLocked = true;
+        gameOver = false;
         UICanvas.gameObject.SetActive(true);
 
         StartCoroutine(fadeUIImage());
+
+    }
+
+    private void Update()
+    {
+        if(controlLocked && gameOver && Input.GetButton("Submit"))
+        {
+            onRestartClick();
+        }
 
     }
 
@@ -59,7 +74,7 @@ public class GameManager : MonoBehaviour
     {
 
         float alpha = mainLogo.color.a;
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 2f)
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 1f)
         {
             Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, 1f, t));
             mainLogo.color = newColor;
@@ -67,28 +82,55 @@ public class GameManager : MonoBehaviour
         }
 
         alpha = logo3D.color.a;
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 2f)
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 1f)
         {
             Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, 1f, t));
             logo3D.color = newColor;
             yield return null;
         }
         alpha = instructions.color.a;
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 1f)
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 0.5f)
         {
             Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, 1f, t));
             instructions.color = newColor;
             insImage.color = newColor;
             yield return null;
         }
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         UICanvas.gameObject.SetActive(false);
         controlLocked = false;
+    }
+
+    public IEnumerator fadeInDeath()
+    {
+        deathCanvas.gameObject.SetActive(true);
+        float alpha = deathCanvas.alpha;
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 1f)
+        {
+            float newAlpha = Mathf.Lerp(alpha, 1f, t);
+            deathCanvas.alpha = newAlpha;
+            yield return null;
+        }
     }
 
     public void fadeImage(Image image)
     {
         image.CrossFadeAlpha(1f, 2f, false);
     }
+
+    public void onRestartClick()
+    {
+        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+    }
+
+    public void playerHit()
+    {
+        gameOver = true;
+        controlLocked = true;
+        StartCoroutine(fadeInDeath());
+
+    }
+
+
 
 }

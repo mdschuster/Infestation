@@ -41,7 +41,7 @@ public class EnemyProjectile : MonoBehaviour
         }
         if (collider.gameObject.tag == "Player")
         {
-            print("Hit player");
+            GameManager.Instance().playerHit();
             Destroy(this.gameObject);
         }
 

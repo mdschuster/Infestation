@@ -14,7 +14,7 @@ public class DoorTrigger : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetButton("Submit") && canOpenDoor) {
+        if (Input.GetButton("Submit") && canOpenDoor && !GameManager.Instance().isControlLocked()) {
             //set door to open
             doorTriggered.Invoke();
         }
@@ -26,13 +26,4 @@ public class DoorTrigger : MonoBehaviour
     private void OnTriggerExit(Collider other) {
         canOpenDoor = false;
     }
-
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (Input.GetKeyDown(KeyCode.E))
-    //    {
-    //        //set door to open
-    //        doorTriggered.Invoke();
-    //    }
-    //}
 }
